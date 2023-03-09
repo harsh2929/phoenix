@@ -32,3 +32,15 @@ export class ViewOptionsComponent implements OnInit {
     this.eventDisplay.getUIManager().setShowGrid(value);
   }
 }
+
+
+setEtaPhiGrid(event: MatCheckboxChange) {
+  if (event.checked) {
+    const etaPhiGridHelper = new THREE.GridHelper(1000, 50);
+    etaPhiGridHelper.position.set(0, 0, 0);
+    this.scene.add(etaPhiGridHelper);
+    this.etaPhiGridHelper = etaPhiGridHelper;
+  } else {
+    this.scene.remove(this.etaPhiGridHelper);
+  }
+}
