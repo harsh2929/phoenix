@@ -27,8 +27,15 @@ export class ViewOptionsComponent implements OnInit {
     this.eventDisplay.getUIManager().setShowAxis(value);
   }
 
-  setGrid(change: MatCheckboxChange) {
-    const value = change.checked;
-    this.eventDisplay.getUIManager().setShowGrid(value);
+  setGrid(event: MatCheckboxChange) {
+  if (event.checked) {
+    const gridHelper = new THREE.GridHelper(1000, 50);
+    gridHelper.position.set(0, 0, 0);
+    this.scene.add(gridHelper);
+    this.cartesianGridHelper = gridHelper;
+  } else {
+ 
+    this.scene.remove(this.cartesianGridHelper);
   }
+}
 }
